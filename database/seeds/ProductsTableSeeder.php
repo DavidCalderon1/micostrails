@@ -377,6 +377,33 @@ class ProductsTableSeeder extends Seeder
                 'updated_at' => '2019-04-07 02:29:18',
                 'deleted_at' => NULL,
             ),
+            40 => 
+            array (
+                'id' => 45,
+                'name' => 'Remolacha',
+                'description' => 'Remolacha',
+                'created_at' => '2019-04-07 02:29:18',
+                'updated_at' => '2019-04-07 02:29:18',
+                'deleted_at' => NULL,
+            ),
+            41 => 
+            array (
+                'id' => 46,
+                'name' => 'Pera',
+                'description' => 'Pera',
+                'created_at' => '2019-04-07 02:29:18',
+                'updated_at' => '2019-04-07 02:29:18',
+                'deleted_at' => NULL,
+            ),
+            42 => 
+            array (
+                'id' => 47,
+                'name' => 'Pan Blanco',
+                'description' => 'Pan Blanco',
+                'created_at' => '2019-04-07 02:29:18',
+                'updated_at' => '2019-04-07 02:29:18',
+                'deleted_at' => NULL,
+            ),
         ));
         
         
