@@ -38,3 +38,5 @@ Route::resource('typeVehicles', 'TypeVehicleController');
 Route::resource('roles', 'RolesController');
 
 Route::resource('statuses', 'StatusController');
+
+Route::resource('storages', 'StoragesController');
