@@ -12,6 +12,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -27,6 +31,12 @@
                         <span class="icon-bar"></span>
                     </button>
 
+                    <button type="button" id="menu-toggle" class="btn" aria-expanded="false">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
@@ -71,10 +81,37 @@
             </div>
         </nav>
 
-        @yield('content')
+
+        <div id="wrapper">
+            <div class="sidebar sticky-left">
+                <aside>
+                    <ul class="list-sidebar bg-default">
+                        @include('layouts.menu')
+                    </ul>
+                </aside>
+            </div>
+            <div id="page-content">
+                @yield('content')
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+            /*Menu-toggle*/
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("fliph");
+            });
+        });
+    
+    </script>
+    
+    @yield('scripts')
+
 </body>
 </html>
