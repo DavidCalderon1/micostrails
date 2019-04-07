@@ -52,7 +52,7 @@ class Providers extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'name' => 'required',
         'phone' => 'required'
     ];

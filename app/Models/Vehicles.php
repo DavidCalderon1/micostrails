@@ -59,7 +59,7 @@ class Vehicles extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'type_vehicle_id' => 'required',
         'brand' => 'required',
         'model' => 'required',

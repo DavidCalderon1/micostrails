@@ -53,7 +53,7 @@ class Storages extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'name' => 'required',
         'city_id' => 'required'
     ];

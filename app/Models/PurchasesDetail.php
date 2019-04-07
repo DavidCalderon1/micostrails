@@ -56,7 +56,7 @@ class PurchasesDetail extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'purchases_id' => 'required',
         'product_id' => 'required',
         'quantity' => 'required'

@@ -53,7 +53,7 @@ class Purchases extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'providers_id' => 'required',
         'storage_id' => 'required'
     ];

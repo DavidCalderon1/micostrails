@@ -49,7 +49,7 @@ class Status extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'name' => 'required',
         'color' => 'required'
     ];

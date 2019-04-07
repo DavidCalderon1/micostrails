@@ -63,7 +63,7 @@ class UsersAddresses extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'user_id' => 'required',
         'address' => 'required'
     ];

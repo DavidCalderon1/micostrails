@@ -42,7 +42,7 @@ class User extends Authenticatable
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'name' => 'required',
         'email' => 'required',
         'password' => 'required'

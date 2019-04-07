@@ -49,7 +49,6 @@ class Orders extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'creator_id' => 'integer',
         'client_id' => 'integer',
         'transporter_id' => 'integer',
@@ -64,7 +63,7 @@ class Orders extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
+        
         'creator_id' => 'required',
         'client_id' => 'required'
     ];
