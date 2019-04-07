@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Model;
 
 /**
- * Class PurchasesDetail
+ * Class TransportersHasVehicles
  * @package App\Models
- * @version April 7, 2019, 2:37 am UTC
+ * @version April 7, 2019, 2:38 am UTC
  *
- * @property \App\Models\Product product
- * @property \App\Models\Purchase purchases
+ * @property \App\Models\User users
+ * @property \App\Models\Vehicle vehicles
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
@@ -18,14 +18,12 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
- * @property integer purchases_id
- * @property integer product_id
- * @property integer quantity
+ * @property integer vehicles_id
  */
-class PurchasesDetail extends Model
+class TransportersHasVehicles extends Model
 {
 
-    public $table = 'purchases_detail';
+    public $table = 'transporters_has_vehicles';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -33,9 +31,7 @@ class PurchasesDetail extends Model
 
 
     public $fillable = [
-        'purchases_id',
-        'product_id',
-        'quantity'
+        'vehicles_id'
     ];
 
     /**
@@ -44,10 +40,8 @@ class PurchasesDetail extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'purchases_id' => 'integer',
-        'product_id' => 'integer',
-        'quantity' => 'integer'
+        'users_id' => 'integer',
+        'vehicles_id' => 'integer'
     ];
 
     /**
@@ -56,25 +50,23 @@ class PurchasesDetail extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
-        'purchases_id' => 'required',
-        'product_id' => 'required',
-        'quantity' => 'required'
+        'users_id' => 'required',
+        'vehicles_id' => 'required'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function product()
+    public function users()
     {
-        return $this->belongsTo(\App\Models\Product::class, 'product_id');
+        return $this->belongsTo(\App\Models\User::class, 'users_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function purchases()
+    public function vehicles()
     {
-        return $this->belongsTo(\App\Models\Purchase::class, 'purchases_id');
+        return $this->belongsTo(\App\Models\Vehicle::class, 'vehicles_id');
     }
 }

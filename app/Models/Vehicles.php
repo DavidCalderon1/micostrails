@@ -10,14 +10,7 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @version April 7, 2019, 1:11 am UTC
  *
  * @property \App\Models\TypeVehicle typeVehicle
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection users
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
  * @property integer type_vehicle_id
  * @property string brand
  * @property string model

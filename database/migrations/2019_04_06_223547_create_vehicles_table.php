@@ -17,7 +17,7 @@ class CreateVehiclesTable extends Migration {
 			$table->integer('id', true);
 			$table->integer('type_vehicle_id')->index('fk_vehicles_type_vehicle1_idx');
 			$table->string('brand', 191);
-			$table->string('model', 191)->unique('users_email_unique');
+			$table->string('model', 191);
 			$table->string('license_plate', 191);
 			$table->timestamps();
 			$table->softDeletes();

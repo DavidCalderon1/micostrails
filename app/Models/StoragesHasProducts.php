@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Model;
 
 /**
- * Class PurchasesDetail
+ * Class StoragesHasProducts
  * @package App\Models
- * @version April 7, 2019, 2:37 am UTC
+ * @version April 7, 2019, 2:36 am UTC
  *
- * @property \App\Models\Product product
- * @property \App\Models\Purchase purchases
+ * @property \App\Models\Product products
+ * @property \App\Models\Storage storages
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
@@ -18,14 +18,13 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
- * @property integer purchases_id
- * @property integer product_id
- * @property integer quantity
+ * @property integer products_id
+ * @property float price
  */
-class PurchasesDetail extends Model
+class StoragesHasProducts extends Model
 {
 
-    public $table = 'purchases_detail';
+    public $table = 'storages_has_products';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -33,9 +32,8 @@ class PurchasesDetail extends Model
 
 
     public $fillable = [
-        'purchases_id',
-        'product_id',
-        'quantity'
+        'products_id',
+        'price'
     ];
 
     /**
@@ -44,10 +42,9 @@ class PurchasesDetail extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'purchases_id' => 'integer',
-        'product_id' => 'integer',
-        'quantity' => 'integer'
+        'storages_id' => 'integer',
+        'products_id' => 'integer',
+        'price' => 'float'
     ];
 
     /**
@@ -56,25 +53,23 @@ class PurchasesDetail extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
-        'purchases_id' => 'required',
-        'product_id' => 'required',
-        'quantity' => 'required'
+        'storages_id' => 'required',
+        'products_id' => 'required'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(\App\Models\Product::class, 'product_id');
+        return $this->belongsTo(\App\Models\Product::class, 'products_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function purchases()
+    public function storages()
     {
-        return $this->belongsTo(\App\Models\Purchase::class, 'purchases_id');
+        return $this->belongsTo(\App\Models\Storage::class, 'storages_id');
     }
 }

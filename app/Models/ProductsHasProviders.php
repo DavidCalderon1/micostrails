@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Model;
 
 /**
- * Class PurchasesDetail
+ * Class ProductsHasProviders
  * @package App\Models
- * @version April 7, 2019, 2:37 am UTC
+ * @version April 7, 2019, 2:35 am UTC
  *
- * @property \App\Models\Product product
- * @property \App\Models\Purchase purchases
+ * @property \App\Models\Product products
+ * @property \App\Models\Provider providers
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
@@ -18,14 +18,13 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
- * @property integer purchases_id
- * @property integer product_id
- * @property integer quantity
+ * @property integer providers_id
+ * @property float cost
  */
-class PurchasesDetail extends Model
+class ProductsHasProviders extends Model
 {
 
-    public $table = 'purchases_detail';
+    public $table = 'products_has_providers';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -33,9 +32,8 @@ class PurchasesDetail extends Model
 
 
     public $fillable = [
-        'purchases_id',
-        'product_id',
-        'quantity'
+        'providers_id',
+        'cost'
     ];
 
     /**
@@ -44,10 +42,9 @@ class PurchasesDetail extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'purchases_id' => 'integer',
-        'product_id' => 'integer',
-        'quantity' => 'integer'
+        'products_id' => 'integer',
+        'providers_id' => 'integer',
+        'cost' => 'float'
     ];
 
     /**
@@ -56,25 +53,24 @@ class PurchasesDetail extends Model
      * @var array
      */
     public static $rules = [
-        'id' => 'required',
-        'purchases_id' => 'required',
-        'product_id' => 'required',
-        'quantity' => 'required'
+        'products_id' => 'required',
+        'providers_id' => 'required',
+        'cost' => 'required'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(\App\Models\Product::class, 'product_id');
+        return $this->belongsTo(\App\Models\Product::class, 'products_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function purchases()
+    public function providers()
     {
-        return $this->belongsTo(\App\Models\Purchase::class, 'purchases_id');
+        return $this->belongsTo(\App\Models\Provider::class, 'providers_id');
     }
 }
