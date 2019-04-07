@@ -2,24 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-/**
- * Class User
- * @package App\Models
- * @version April 7, 2019, 12:40 am UTC
- *
- * @property \Illuminate\Database\Eloquent\Collection orders
- * @property \Illuminate\Database\Eloquent\Collection vehicles
- * @property \Illuminate\Database\Eloquent\Collection usersAddresses
- * @property \Illuminate\Database\Eloquent\Collection roles
- * @property string name
- * @property string email
- * @property string password
- * @property string remember_token
- */
-class User extends Model
+class User extends Authenticatable
 {
+    use Notifiable;
 
     public $table = 'users';
     

@@ -31,13 +31,17 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <button type="button" id="menu-toggle" class="btn" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- Branding Image -->
+                    @auth
+    
+                        <button type="button" id="menu-toggle" class="btn" aria-expanded="false">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    @endauth
+                    
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
@@ -82,13 +86,15 @@
         </nav>
 
 
-        <div id="wrapper">
+        <div id="wrapper" @guest class="fliph" @endguest >
             <div class="sidebar sticky-left">
-                <aside>
-                    <ul class="list-sidebar bg-default">
-                        @include('layouts.menu')
-                    </ul>
-                </aside>
+                @auth
+                    <aside>
+                        <ul class="list-sidebar bg-default">
+                            @include('layouts.menu')
+                        </ul>
+                    </aside>
+                @endauth
             </div>
             <div id="page-content">
                 @yield('content')
