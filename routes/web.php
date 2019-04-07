@@ -42,3 +42,5 @@ Route::resource('statuses', 'StatusController');
 Route::resource('storages', 'StoragesController');
 
 Route::resource('vehicles', 'VehiclesController');
+
+Route::resource('usersAddresses', 'UsersAddressesController');
