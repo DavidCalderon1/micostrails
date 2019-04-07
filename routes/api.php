@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('products', 'ProductsAPIController');
 
 Route::resource('storages', 'StoragesAPIController');
+
+Route::resource('orders', 'OrdersAPIController');
