@@ -12,14 +12,8 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \Illuminate\Database\Eloquent\Collection orders
  * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
  * @property string name
- * @property boolean position
+ * @property integer position
  */
 class Status extends Model
 {
@@ -33,7 +27,8 @@ class Status extends Model
 
     public $fillable = [
         'name',
-        'position'
+        'position',
+        'color'
     ];
 
     /**
@@ -44,7 +39,8 @@ class Status extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'position' => 'boolean'
+        'position' => 'integer',
+        'color' => 'string'
     ];
 
     /**
@@ -54,7 +50,8 @@ class Status extends Model
      */
     public static $rules = [
         'id' => 'required',
-        'name' => 'required'
+        'name' => 'required',
+        'color' => 'required'
     ];
 
     /**

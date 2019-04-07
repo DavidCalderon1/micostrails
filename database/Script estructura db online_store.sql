@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `online_store`.`status` (
   `id` INT(10) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(191) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL,
   `position` TINYINT(1) NULL,
+  `color` VARCHAR(10) NULL,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,

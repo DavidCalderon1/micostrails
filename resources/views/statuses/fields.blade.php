@@ -4,13 +4,16 @@
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Position Field -->
+<!-- position Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('position', 'Position:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('position', 0) !!}
-        {!! Form::checkbox('position', '1', null) !!} 1
-    </label>
+    <b>{!! Form::label('position', 'Position:') !!}</b>
+    {!! Form::number('position', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Color Field -->
+<div class="form-group col-sm-6">
+    <b>{!! Form::label('color', __('words.Color')) !!}</b>
+    {!! Form::color('color', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

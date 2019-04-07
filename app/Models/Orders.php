@@ -14,20 +14,13 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \App\Models\User client
  * @property \App\Models\User transporter
  * @property \App\Models\UsersAddress usersAddresses
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
  * @property \Illuminate\Database\Eloquent\Collection sales
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
  * @property integer creator_id
  * @property integer client_id
  * @property integer transporter_id
  * @property integer users_addresses_id
  * @property string|\Carbon\Carbon delivery_date
- * @property boolean priority
+ * @property integer priority
  * @property integer status_id
  */
 class Orders extends Model
@@ -61,7 +54,7 @@ class Orders extends Model
         'client_id' => 'integer',
         'transporter_id' => 'integer',
         'users_addresses_id' => 'integer',
-        'priority' => 'boolean',
+        'priority' => 'integer',
         'status_id' => 'integer'
     ];
 
