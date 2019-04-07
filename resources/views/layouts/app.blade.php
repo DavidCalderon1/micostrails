@@ -96,7 +96,7 @@
                     </aside>
                 @endauth
             </div>
-            <div id="page-content">
+            <div id="page-content" class="container">
                 @yield('content')
             </div>
         </div>
