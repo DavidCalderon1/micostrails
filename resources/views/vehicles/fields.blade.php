@@ -1,7 +1,7 @@
 <!-- Type Vehicle Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('type_vehicle_id', 'Type Vehicle Id:') !!}
-    {!! Form::number('type_vehicle_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('type_vehicle_id', 'Type Vehicle:') !!}
+    {!! Form::select('type_vehicle_id', $type_vehicles, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Brand Field -->

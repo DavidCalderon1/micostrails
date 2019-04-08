@@ -33,7 +33,8 @@ class User extends Authenticatable
         'name' => 'string',
         'email' => 'string',
         'password' => 'string',
-        'remember_token' => 'string'
+        'remember_token' => 'string',
+        'role_id' => 'integer'
     ];
 
     /**
@@ -45,7 +46,7 @@ class User extends Authenticatable
         
         'name' => 'required',
         'email' => 'required',
-        'password' => 'required'
+        'role_id' => 'required'
     ];
 
     /**
@@ -77,6 +78,6 @@ class User extends Authenticatable
      **/
     public function roles()
     {
-        return $this->belongsToMany(\App\Models\Role::class, 'users_has_roles');
+        return $this->belongsToMany(\App\Models\Roles::class, 'users_has_roles','users_id','roles_id');
     }
 }

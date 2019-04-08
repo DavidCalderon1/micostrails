@@ -6,8 +6,8 @@
 
 <!-- Type Vehicle Id Field -->
 <div class="form-group">
-    {!! Form::label('type_vehicle_id', 'Type Vehicle Id:') !!}
-    <p>{!! $vehicles->type_vehicle_id !!}</p>
+    {!! Form::label('type_vehicle_id', 'Type Vehicle:') !!}
+    <p>{!! $vehicles->type_vehicle_name !!}</p>
 </div>
 
 <!-- Brand Field -->

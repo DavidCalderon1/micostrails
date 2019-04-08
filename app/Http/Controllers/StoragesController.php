@@ -32,8 +32,15 @@ class StoragesController extends AppBaseController
         $this->storagesRepository->pushCriteria(new RequestCriteria($request));
         $storages = $this->storagesRepository->all();
 
+        $storages = $storages->toArray();
+
+        $cities_id = array_column($storages, 'city_id');
+
+        $cities =  \App\Models\Cities::whereIn('id',$cities_id)
+            ->pluck('name','id');
+
         return view('storages.index')
-            ->with('storages', $storages);
+            ->with(['storages' => $storages, 'cities' => $cities]);
     }
 
     /**
@@ -43,7 +50,9 @@ class StoragesController extends AppBaseController
      */
     public function create()
     {
-        return view('storages.create');
+        $cities =  \App\Models\Cities::pluck('name','id');
+
+        return view('storages.create')->with(['cities' => $cities]);
     }
 
     /**
@@ -81,6 +90,8 @@ class StoragesController extends AppBaseController
             return redirect(route('storages.index'));
         }
 
+        $storages->city_name = $storages->cities()->first()->name ?? '';
+
         return view('storages.show')->with('storages', $storages);
     }
 
@@ -101,7 +112,9 @@ class StoragesController extends AppBaseController
             return redirect(route('storages.index'));
         }
 
-        return view('storages.edit')->with('storages', $storages);
+        $cities =  \App\Models\Cities::pluck('name','id');
+
+        return view('storages.edit')->with(['storages' => $storages, 'cities' => $cities]);
     }
 
     /**

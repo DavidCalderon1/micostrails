@@ -62,7 +62,7 @@ class Providers extends Model
      **/
     public function products()
     {
-        return $this->belongsToMany(\App\Models\Product::class, 'products_has_providers');
+        return $this->belongsToMany(\App\Models\Products::class, 'products_has_providers');
     }
 
     /**
@@ -70,6 +70,6 @@ class Providers extends Model
      **/
     public function purchases()
     {
-        return $this->hasMany(\App\Models\Purchase::class);
+        return $this->hasMany(\App\Models\Purchases::class);
     }
 }

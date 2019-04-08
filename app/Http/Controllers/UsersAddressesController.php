@@ -30,10 +30,40 @@ class UsersAddressesController extends AppBaseController
     public function index(Request $request)
     {
         $this->usersAddressesRepository->pushCriteria(new RequestCriteria($request));
+        $this->usersAddressesRepository->orderBy('user_id','asc');
         $usersAddresses = $this->usersAddressesRepository->all();
 
+        $usersAddresses = $usersAddresses->toArray();
+
+        $users_id = array_column($usersAddresses, 'user_id');
+        $cities_id = array_column($usersAddresses, 'city_id');
+
+        $users =  \App\Models\User::whereIn('id',$users_id)
+            ->pluck('name','id');
+
+        $cities =  \App\Models\Cities::whereIn('id',$cities_id)
+            ->pluck('name','id');
+
+
         return view('users_addresses.index')
-            ->with('usersAddresses', $usersAddresses);
+            ->with(['usersAddresses' => $usersAddresses, 'users' => $users, 'cities' => $cities]);
+    }
+
+    /**
+     * Display a listing of the Department.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function getUsersAddresses(Request $request)
+    {   
+        // si es una peticion de tipo ajax
+        if ($request->ajax()) {
+            if ( isset($request['id']) ) {
+                $usersAddresses = \App\Models\UsersAddresses::where('user_id',$request['id'])->orderBy('address','asc')->pluck('address','id');
+                return response()->json($usersAddresses);
+            }
+        }
     }
 
     /**
@@ -43,7 +73,10 @@ class UsersAddressesController extends AppBaseController
      */
     public function create()
     {
-        return view('users_addresses.create');
+        $users =  \App\Models\User::pluck('name','id');
+        $cities =  \App\Models\Cities::pluck('name','id');
+
+        return view('users_addresses.create')->with(['users' => $users, 'cities' => $cities]);
     }
 
     /**
@@ -81,6 +114,10 @@ class UsersAddressesController extends AppBaseController
             return redirect(route('usersAddresses.index'));
         }
 
+        $usersAddresses->user_name = $usersAddresses->user()->first()->name ?? '';
+
+        $usersAddresses->city_name = $usersAddresses->city()->first()->name ?? '';
+
         return view('users_addresses.show')->with('usersAddresses', $usersAddresses);
     }
 
@@ -101,7 +138,10 @@ class UsersAddressesController extends AppBaseController
             return redirect(route('usersAddresses.index'));
         }
 
-        return view('users_addresses.edit')->with('usersAddresses', $usersAddresses);
+        $users =  \App\Models\User::pluck('name','id');
+        $cities =  \App\Models\Cities::pluck('name','id');
+
+        return view('users_addresses.edit')->with(['usersAddresses' => $usersAddresses, 'users' => $users, 'cities' => $cities]);
     }
 
     /**

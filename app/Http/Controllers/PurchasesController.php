@@ -32,8 +32,19 @@ class PurchasesController extends AppBaseController
         $this->purchasesRepository->pushCriteria(new RequestCriteria($request));
         $purchases = $this->purchasesRepository->all();
 
+        $purchases = $purchases->toArray();
+
+        $providers_id = array_column($purchases, 'providers_id');
+        $storages_id = array_column($purchases, 'storage_id');
+
+        $providers =  \App\Models\providers::whereIn('id',$providers_id)
+            ->pluck('name','id');
+
+        $storages =  \App\Models\Storages::whereIn('id',$storages_id)
+            ->pluck('name','id');
+
         return view('purchases.index')
-            ->with('purchases', $purchases);
+            ->with(['purchases' => $purchases, 'providers' => $providers, 'storages' => $storages]);
     }
 
     /**
@@ -43,7 +54,15 @@ class PurchasesController extends AppBaseController
      */
     public function create()
     {
-        return view('purchases.create');
+        $providers =  \App\Models\providers::pluck('name','id');
+
+        $storages =  \App\Models\Storages::pluck('name','id');
+
+        $products =  \App\Models\Products::pluck('name','id');
+
+        $purchase_products =  [];
+
+        return view('purchases.create', compact('providers','storages','products','purchase_products'));
     }
 
     /**
@@ -57,7 +76,31 @@ class PurchasesController extends AppBaseController
     {
         $input = $request->all();
 
+
+        $validateFields = [];
+        $count_products = count($request['products']);
+        if ($count_products != count($request['quantities'])) {
+            $validateFields['quantities'] = 'required';
+        }
+
+        if (count($validateFields)) {
+            $this->validate($request, $validateFields);
+        }
+
+        // inicia la transaccion
+        \DB::beginTransaction();
+
         $purchases = $this->purchasesRepository->create($input);
+
+        // guardar el recurso de purchases_detail 
+        $purchases_detail = [];
+        foreach ($request['products'] as $key => $product) {
+            $purchases_detail[] = new \App\Models\PurchasesDetail(['purchases_id' => $purchases->id, 'product_id' => $product, 'quantity' => $request['quantities'][$key]]);
+        }
+        $purchases->purchasesDetails()->saveMany($purchases_detail);
+
+        // finaliza la transaccion
+        \DB::commit();
 
         Flash::success('Purchases saved successfully.');
 
@@ -81,7 +124,15 @@ class PurchasesController extends AppBaseController
             return redirect(route('purchases.index'));
         }
 
-        return view('purchases.show')->with('purchases', $purchases);
+        $purchases->providers_name = $purchases->providers()->first()->name ?? '';
+        $purchases->storage_name = $purchases->storage()->first()->name ?? '';
+
+        $purchase_products = \App\Models\PurchasesDetail::join('products','purchases_detail.product_id','products.id')
+            ->where('purchases_detail.purchases_id',$purchases->id)
+            ->select('products.name','quantity')
+            ->get();
+
+        return view('purchases.show')->with(['purchases' => $purchases, 'purchase_products' => $purchase_products]);
     }
 
     /**
@@ -101,7 +152,15 @@ class PurchasesController extends AppBaseController
             return redirect(route('purchases.index'));
         }
 
-        return view('purchases.edit')->with('purchases', $purchases);
+        $providers =  \App\Models\providers::pluck('name','id');
+
+        $storages =  \App\Models\Storages::pluck('name','id');
+
+        $products =  \App\Models\Products::pluck('name','id');
+
+        $purchase_products = $purchases->purchasesDetails()->select('purchases_detail.id','product_id','quantity')->get();
+
+        return view('purchases.edit', compact('purchases','providers','storages','products','purchase_products'));
     }
 
     /**
@@ -122,7 +181,48 @@ class PurchasesController extends AppBaseController
             return redirect(route('purchases.index'));
         }
 
+
+
+        $validateFields = [];
+        $count_products = count($request['products']);
+        if ($count_products != count($request['quantities'])) {
+            $validateFields['quantities'] = 'required';
+        }
+
+        if (count($validateFields)) {
+            $this->validate($request, $validateFields);
+        }
+
+        // inicia la transaccion
+        \DB::beginTransaction();
+
+        $purchases_detail_id_old = $purchases->purchasesDetails()->pluck('purchases_detail.id')->toArray();
+        // guardar el recurso purchases_detail
+        $purchases_detail_create = [];
+        $purchases_detail_update = [];
+        $purchases_detail_delete = [];
+        
+        // eliminar los registros de purchases_detail que no llegaron
+        if (isset($request['purchases_detail_id'])) {
+            $purchases_detail_delete = array_diff($purchases_detail_id_old, $request['purchases_detail_id']);
+        }
+        if(count($purchases_detail_delete)){
+            $sale = \App\Models\PurchasesDetail::whereIn('id',$purchases_detail_delete)->delete();
+        }
+
+        foreach ($request['products'] as $key => $product) {
+
+            $sale = \App\Models\PurchasesDetail::updateOrCreate(
+                ['id' => ($request['purchases_detail_id'][$key] ?? 0)],
+                ['purchases_id' => $purchases->id, 'product_id' => $product, 'quantity' => $request['quantities'][$key]]
+            );
+
+        }
+
         $purchases = $this->purchasesRepository->update($request->all(), $id);
+
+        // finaliza la transaccion
+        \DB::commit();
 
         Flash::success('Purchases updated successfully.');
 

@@ -68,7 +68,6 @@ class Orders extends Model
      */
     public static $rules = [
         
-        'creator_id' => 'required',
         'client_id' => 'required',
         'storage_id' => 'required',
         'users_addresses_id' => 'required',
@@ -113,7 +112,7 @@ class Orders extends Model
      **/
     public function storage()
     {
-        return $this->belongsTo(\App\Models\Storage::class, 'storage_id');
+        return $this->belongsTo(\App\Models\Storages::class, 'storage_id');
     }
 
     /**
@@ -121,7 +120,7 @@ class Orders extends Model
      **/
     public function usersAddresses()
     {
-        return $this->belongsTo(\App\Models\UsersAddress::class, 'users_addresses_id');
+        return $this->belongsTo(\App\Models\UsersAddresses::class, 'users_addresses_id');
     }
 
     /**
@@ -129,6 +128,6 @@ class Orders extends Model
      **/
     public function sales()
     {
-        return $this->hasMany(\App\Models\Sale::class);
+        return $this->hasMany(\App\Models\Sales::class);
     }
 }

@@ -10,6 +10,12 @@
     {!! Form::text('description', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Products Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('providers', 'Providers:') !!}
+    {!! Form::select('providers[]', $providers, null, ['class' => 'form-control select2', 'placeholder_text' => 'Select one...', 'multiple']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

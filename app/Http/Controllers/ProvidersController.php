@@ -43,7 +43,9 @@ class ProvidersController extends AppBaseController
      */
     public function create()
     {
-        return view('providers.create');
+        $products =  \App\Models\Products::pluck('name','id');
+
+        return view('providers.create')->with('products', $products);
     }
 
     /**
@@ -58,6 +60,8 @@ class ProvidersController extends AppBaseController
         $input = $request->all();
 
         $providers = $this->providersRepository->create($input);
+
+        $providers->products()->sync($input['products']);
 
         Flash::success('Providers saved successfully.');
 
@@ -101,7 +105,11 @@ class ProvidersController extends AppBaseController
             return redirect(route('providers.index'));
         }
 
-        return view('providers.edit')->with('providers', $providers);
+        $providers->products = $providers->products()->pluck('id');
+
+        $products =  \App\Models\Products::pluck('name','id');
+
+        return view('providers.edit')->with(['providers' => $providers, 'products' => $products]);
     }
 
     /**
@@ -123,6 +131,8 @@ class ProvidersController extends AppBaseController
         }
 
         $providers = $this->providersRepository->update($request->all(), $id);
+
+        $providers->products()->sync($request['products']);
 
         Flash::success('Providers updated successfully.');
 

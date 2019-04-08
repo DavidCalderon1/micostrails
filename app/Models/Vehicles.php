@@ -72,6 +72,6 @@ class Vehicles extends Model
      **/
     public function users()
     {
-        return $this->belongsToMany(\App\Models\User::class, 'transporters_has_vehicles');
+        return $this->belongsToMany(\App\Models\Users::class, 'transporters_has_vehicles');
     }
 }

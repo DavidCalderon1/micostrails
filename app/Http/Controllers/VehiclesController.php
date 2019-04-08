@@ -32,8 +32,15 @@ class VehiclesController extends AppBaseController
         $this->vehiclesRepository->pushCriteria(new RequestCriteria($request));
         $vehicles = $this->vehiclesRepository->all();
 
+        $vehicles = $vehicles->toArray();
+
+        $type_vehicles_id = array_column($vehicles, 'type_vehicle_id');
+
+        $type_vehicles =  \App\Models\TypeVehicle::whereIn('id',$type_vehicles_id)
+            ->pluck('name','id');
+
         return view('vehicles.index')
-            ->with('vehicles', $vehicles);
+            ->with(['vehicles' => $vehicles, 'type_vehicles' => $type_vehicles]);
     }
 
     /**
@@ -43,7 +50,9 @@ class VehiclesController extends AppBaseController
      */
     public function create()
     {
-        return view('vehicles.create');
+        $type_vehicles =  \App\Models\TypeVehicle::pluck('name','id');
+
+        return view('vehicles.create')->with(['type_vehicles' => $type_vehicles]);
     }
 
     /**
@@ -81,6 +90,8 @@ class VehiclesController extends AppBaseController
             return redirect(route('vehicles.index'));
         }
 
+        $vehicles->type_vehicle_name = $vehicles->typeVehicle()->first()->name ?? '';
+
         return view('vehicles.show')->with('vehicles', $vehicles);
     }
 
@@ -101,7 +112,9 @@ class VehiclesController extends AppBaseController
             return redirect(route('vehicles.index'));
         }
 
-        return view('vehicles.edit')->with('vehicles', $vehicles);
+        $type_vehicles =  \App\Models\TypeVehicle::pluck('name','id');
+
+        return view('vehicles.edit')->with(['vehicles' => $vehicles, 'type_vehicles' => $type_vehicles]);
     }
 
     /**

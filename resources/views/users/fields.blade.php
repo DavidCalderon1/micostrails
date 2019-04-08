@@ -22,6 +22,12 @@
     {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- role Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('role_id', 'Role:') !!}
+    {!! Form::select('role_id', $roles, null, ['class' => 'form-control', 'placeholder' => 'Select one...']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

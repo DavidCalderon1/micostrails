@@ -6,8 +6,8 @@
 
 <!-- City Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('city_id', 'City Id:') !!}
-    {!! Form::number('city_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('city_id', 'City:') !!}
+    {!! Form::select('city_id', $cities, null, ['class' => 'form-control', 'placeholder' => 'Select one...']) !!}
 </div>
 
 <!-- Submit Field -->

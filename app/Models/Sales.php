@@ -12,12 +12,6 @@ use Illuminate\Database\Eloquent\Model as Model;
  * @property \App\Models\Order orders
  * @property \App\Models\Product product
  * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
- * @property \Illuminate\Database\Eloquent\Collection 
  * @property integer orders_id
  * @property integer product_id
  * @property integer quantity
@@ -27,9 +21,7 @@ class Sales extends Model
 
     public $table = 'sales';
     
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
+    public $timestamps = false;
 
 
     public $fillable = [

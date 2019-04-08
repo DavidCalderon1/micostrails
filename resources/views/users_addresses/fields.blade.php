@@ -1,7 +1,7 @@
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('user_id', 'User:') !!}
+    {!! Form::select('user_id', $users, null, ['class' => 'form-control', 'placeholder' => 'Select one...']) !!}
 </div>
 
 <!-- Address Field -->
@@ -24,8 +24,8 @@
 
 <!-- City Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('city_id', 'City Id:') !!}
-    {!! Form::number('city_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('city_id', 'City:') !!}
+    {!! Form::select('city_id', $cities, null, ['class' => 'form-control', 'placeholder' => 'Select one...']) !!}
 </div>
 
 <!-- Submit Field -->

@@ -32,8 +32,16 @@ class UserController extends AppBaseController
         $this->userRepository->pushCriteria(new RequestCriteria($request));
         $users = $this->userRepository->all();
 
+        $users = $users->toArray();
+
+        $users_id = array_column($users, 'id');
+
+        $roles =  \App\Models\Roles::join('users_has_roles','roles.id','users_has_roles.roles_id')
+            ->whereIn('users_id',$users_id)
+            ->pluck('name','users_id');
+
         return view('users.index')
-            ->with('users', $users);
+            ->with(['users' => $users, 'roles' => $roles]);
     }
 
     /**
@@ -43,7 +51,10 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+
+        $roles =  \App\Models\Roles::pluck('name','id');
+
+        return view('users.create')->with(['roles' => $roles]);
     }
 
     /**
@@ -57,7 +68,13 @@ class UserController extends AppBaseController
     {
         $input = $request->all();
 
+        $this->validate($request,[
+            'password' => 'required|min:6',
+        ]);
+
         $user = $this->userRepository->create($input);
+
+        $user->roles()->sync($input['role_id']);
 
         Flash::success('User saved successfully.');
 
@@ -81,6 +98,8 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
+        $user->role_name = $user->roles()->first()->name ?? '';
+
         return view('users.show')->with('user', $user);
     }
 
@@ -101,7 +120,11 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        $user->role_id = $user->roles()->first()->id ?? '';
+
+        $roles =  \App\Models\Roles::pluck('name','id');
+
+        return view('users.edit')->with(['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -121,8 +144,15 @@ class UserController extends AppBaseController
 
             return redirect(route('users.index'));
         }
+        $input = $request->only('name','email','role_id');
 
-        $user = $this->userRepository->update($request->all(), $id);
+        if (!empty($request['password'])) {
+            $input['password'] = $request['password'];
+        }
+
+        $user = $this->userRepository->update($input, $id);
+
+        $user->roles()->sync($input['role_id']);
 
         Flash::success('User updated successfully.');
 

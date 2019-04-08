@@ -63,7 +63,7 @@ class Purchases extends Model
      **/
     public function providers()
     {
-        return $this->belongsTo(\App\Models\Provider::class, 'providers_id');
+        return $this->belongsTo(\App\Models\Providers::class, 'providers_id');
     }
 
     /**
@@ -71,7 +71,7 @@ class Purchases extends Model
      **/
     public function storage()
     {
-        return $this->belongsTo(\App\Models\Storage::class, 'storage_id');
+        return $this->belongsTo(\App\Models\Storages::class, 'storage_id');
     }
 
     /**

@@ -28,6 +28,12 @@
     <p>{!! $user->remember_token !!}</p>
 </div>
 
+<!-- Role Field -->
+<div class="form-group">
+    {!! Form::label('role_name', 'Role:') !!}
+    <p>{!! $user->role_name !!}</p>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}

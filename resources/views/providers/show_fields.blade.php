@@ -34,3 +34,13 @@
     <p>{!! $providers->deleted_at !!}</p>
 </div>
 
+<!-- Phone Field -->
+<div class="form-group">
+    {!! Form::label('products', 'Products:') !!}
+    @foreach ($providers->products()->get() as $product)
+    
+        <p>{!! $product->name !!}</p>
+        
+    @endforeach
+</div>
+

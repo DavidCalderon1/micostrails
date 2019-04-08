@@ -63,7 +63,7 @@ class Storages extends Model
      **/
     public function city()
     {
-        return $this->belongsTo(\App\Models\City::class, 'city_id');
+        return $this->belongsTo(\App\Models\Cities::class, 'city_id');
     }
 
     /**
@@ -71,7 +71,7 @@ class Storages extends Model
      **/
     public function purchases()
     {
-        return $this->hasMany(\App\Models\Purchase::class);
+        return $this->hasMany(\App\Models\Purchases::class);
     }
 
     /**
@@ -79,6 +79,6 @@ class Storages extends Model
      **/
     public function products()
     {
-        return $this->belongsToMany(\App\Models\Product::class, 'storages_has_products');
+        return $this->belongsToMany(\App\Models\Products::class, 'storages_has_products');
     }
 }

@@ -103,8 +103,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
     
+
     <script type="text/javascript">
         
         $(document).ready(function(){
@@ -114,10 +116,53 @@
                 $("#wrapper").toggleClass("fliph");
             });
         });
+
+        function getSelectOptions(route, element, target, indexElement){
+            var results = '#flash-msg';
+            var token = $('input[name="_token"]').val();
+            var elem_val = $(element).val();
+            var data = {id :elem_val, _token : token};
+            var eqElement = '';
+            if (indexElement !== undefined) {
+                eqElement = ':eq('+indexElement+')';
+            }
+            if (route != '' && elem_val != '') {
+
+                $.ajax({
+                    url:route,
+                    data: data,
+                    type:'POST',
+                    headers: {'X-CSRF-TOKEN': token},
+                    // processData: false,
+                    // contentType: false,
+                    success:function(response){
+                        $('select[name="'+ target +'"]'+eqElement+' option:not([value=""])').remove();
+                        $.each(response, function(i,item) {
+                            $('select[name="'+ target +'"]'+eqElement+'').append("<option value=\""+ i +"\">" + item + "</option>");
+                        });
+                        $('select[name="'+ target +'"]'+eqElement+'').focus();
+                        // if (target.indexOf('layout') != -1) {
+                            // para el caso de ser otro select del que se cargue un tercero
+                            $('select[name="'+ target +'"]'+eqElement+'').change();
+                        // }
+                    },
+                    error:function(msj){
+                        console.log(msj);
+                        $( results ).attr('return','error');
+                    }
+                });
+            }else{
+                $('select[name="'+ target +'"]'+eqElement+' option:not([value=""])').remove();
+                // if (target.indexOf('layout') != -1) {
+                    // para el caso de ser otro select del que se cargue un tercero
+                    $('select[name="'+ target +'"]'+eqElement+'').change();
+                // }
+            }
+        }
     
     </script>
     
-    @yield('scripts')
+    @yield('functions')
 
 </body>
 </html>

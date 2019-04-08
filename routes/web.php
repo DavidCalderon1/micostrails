@@ -37,6 +37,7 @@ Route::resource('storages', 'StoragesController');
 
 Route::resource('vehicles', 'VehiclesController');
 
+Route::post('/usersAddresses/getUsersAddresses', ['as'=>'usersAddresses.getUsersAddresses', 'uses'=>'UsersAddressesController@getUsersAddresses']);
 Route::resource('usersAddresses', 'UsersAddressesController');
 
 Route::resource('orders', 'OrdersController');

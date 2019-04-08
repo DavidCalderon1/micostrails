@@ -62,7 +62,7 @@ class Products extends Model
      **/
     public function providers()
     {
-        return $this->belongsToMany(\App\Models\Provider::class, 'products_has_providers');
+        return $this->belongsToMany(\App\Models\Providers::class, 'products_has_providers');
     }
 
     /**
@@ -78,7 +78,7 @@ class Products extends Model
      **/
     public function sales()
     {
-        return $this->hasMany(\App\Models\Sale::class);
+        return $this->hasMany(\App\Models\Sales::class);
     }
 
     /**
@@ -86,6 +86,6 @@ class Products extends Model
      **/
     public function storages()
     {
-        return $this->belongsToMany(\App\Models\Storage::class, 'storages_has_products');
+        return $this->belongsToMany(\App\Models\Storages::class, 'storages_has_products');
     }
 }

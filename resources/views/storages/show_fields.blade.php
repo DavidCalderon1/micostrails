@@ -12,8 +12,8 @@
 
 <!-- City Id Field -->
 <div class="form-group">
-    {!! Form::label('city_id', 'City Id:') !!}
-    <p>{!! $storages->city_id !!}</p>
+    {!! Form::label('city_id', 'City:') !!}
+    <p>{!! $storages->city_name !!}</p>
 </div>
 
 <!-- Created At Field -->

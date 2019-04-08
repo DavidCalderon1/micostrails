@@ -6,8 +6,8 @@
 
 <!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $usersAddresses->user_id !!}</p>
+    {!! Form::label('user_id', 'User:') !!}
+    <p>{!! $usersAddresses->user_name !!}</p>
 </div>
 
 <!-- Address Field -->
@@ -30,8 +30,8 @@
 
 <!-- City Id Field -->
 <div class="form-group">
-    {!! Form::label('city_id', 'City Id:') !!}
-    <p>{!! $usersAddresses->city_id !!}</p>
+    {!! Form::label('city_id', 'City:') !!}
+    <p>{!! $usersAddresses->city_name !!}</p>
 </div>
 
 <!-- Created At Field -->
