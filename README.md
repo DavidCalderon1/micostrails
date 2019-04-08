@@ -30,19 +30,19 @@ Los anteriores archivos estan en la carpeta database
 
 ## solucion del problema
 
-Se creo un servicio de tipo API para consultar las ordenes, los parametros que recibe este servicio son:
-			- id = id de la orden
-			- creator_id = id del usuario que creo la orden
-			- client_id = id del cliente al que esta asociada la orden
-			- transporter_id = id del transportador asignado a la orden
-			- storage_id = id de la bodega a la que se registro la orden
-			- users_addresses_id = id de la direccion de destino del cliente registrada
-			- delivery_date = fecha de entrega
-			- priority = prioridad
-			- status_id = estado
-			- paid = 0 no se ha realizado el pago de la orden, 1 orden pagada
-			- limit = limite o cantidad de registros a mostrar
-			- offset = numero del grupo de registros, el parametro limit especifica el tamaño de cada grupo
+Se creo un servicio de tipo API para consultar las ordenes, los parametros que recibe este servicio son: 
+- id = id de la orden
+- creator_id = id del usuario que creo la orden
+- client_id = id del cliente al que esta asociada la orden
+- transporter_id = id del transportador asignado a la orden
+- storage_id = id de la bodega a la que se registro la orden
+- users_addresses_id = id de la direccion de destino del cliente registrada
+- delivery_date = fecha de entrega
+- priority = prioridad
+- status_id = estado
+- paid = 0 no se ha realizado el pago de la orden, 1 orden pagada
+- limit = limite o cantidad de registros a mostrar
+- offset = numero del grupo de registros, el parametro limit especifica el tamaño de cada grupo
 	
 El servicio de las ordenes retorna los datos basicos de las ordenes en donde adicionalmente incluye:
       - el nombre del transportador
@@ -54,14 +54,14 @@ Ejemplo, para consultar las ordenes que pertenecen a un cliente y que tienen el 
 
 
 Se creo un servicio de tipo API para consultar los productos, los parametros que recibe este servicio son:
-			- id = id del producto
-			- name = nombre del producto
-			- delivery_date = fecha de entrega, al especificarlo se obtienen los productos que se registraron en las ordenes con esa fecha de entrega
-			- cond = parametro para filtrar las ventas de los productos, el cual tiene dos posibles valores
-				- least-sold = se obtendrian los productos menos vendidos ordenados de forma descendente por la cantidad de unidades vendidas que es retornado en el parametro: quantities_sold 
-				- most-sold = se obtendrian los productos mas vendidos ordenados de forma ascendente por la cantidad de unidades vendidas que es retornado en el parametro: quantities_sold
-			- limit = limite o cantidad de registros a mostrar
-			- offset = numero del grupo de registros, el parametro limit especifica el tamaño de cada grupo
+- id = id del producto
+- name = nombre del producto
+- delivery_date = fecha de entrega, al especificarlo se obtienen los productos que se registraron en las ordenes con esa fecha de entrega
+- cond = parametro para filtrar las ventas de los productos, el cual tiene dos posibles valores
+	- least-sold = se obtendrian los productos menos vendidos ordenados de forma descendente por la cantidad de unidades vendidas que es retornado en el parametro: quantities_sold 
+	- most-sold = se obtendrian los productos mas vendidos ordenados de forma ascendente por la cantidad de unidades vendidas que es retornado en el parametro: quantities_sold
+- limit = limite o cantidad de registros a mostrar
+- offset = numero del grupo de registros, el parametro limit especifica el tamaño de cada grupo
 
 Ejemplo, para consultar los productos menos vendidos que se entregaron el 1 de marzo del 2019:  /api/products?cond=least-sold&delivery_date=2019-03-01
       
@@ -71,12 +71,12 @@ Ejemplo, para consultar los productos mas vendidos que se entregaron el 1 de mar
 
 
 Se creo un servicio de tipo API para consultar el inventario de las bodegas, los parametros que recibe este servicio son:
-			- id = id de la bodega, puede ser de tipo numero o array
-			- name = nombre de la bodega
-			- city_id = id de la ciudad de la bodega
-			- products_ids = ids de la lista de productos de los que se quiere saber el inventaro, debe ser de tipo array 
-			- limit = limite o cantidad de registros a mostrar
-			- offset = numero del grupo de registros, el parametro limit especifica el tamaño de cada grupo
+- id = id de la bodega, puede ser de tipo numero o array
+- name = nombre de la bodega
+- city_id = id de la ciudad de la bodega
+- products_ids = ids de la lista de productos de los que se quiere saber el inventaro, debe ser de tipo array 
+- limit = limite o cantidad de registros a mostrar
+- offset = numero del grupo de registros, el parametro limit especifica el tamaño de cada grupo
       
 Este servicio retorna el inventario agrupado por bodegas, dentro de las cuales el dato 'inventory' contiene uno a uno los porductos con su informacion junto con la cantidad de compras (puchases) y ventas (sales), este ultimo determinado a partir de las ordenes que ya estan pagadas
 
@@ -84,8 +84,8 @@ Ejemplo, para consultar el inventario de la bodega llamada 'Chapinero':  /api/st
 
 
 Al revisar los datos de entrada se encontraron algunos errores:
-      - el inventario estaba incompleto, hacian falta productos que tenian asociados algunos proveedores o visto de otra manera, los proveedores tenian asignados productos que no existian
-      - las ordenes tenian registrados productos que no existian en el inventario 
+- el inventario estaba incompleto, hacian falta productos que tenian asociados algunos proveedores o visto de otra manera, los proveedores tenian asignados productos que no existian
+- las ordenes tenian registrados productos que no existian en el inventario 
       
 
 Como valor adicional decidi hacer la parte web (lo cual me tomo un poco mas de tiempo), para poder registrar los datos de cada tabla y poder comprobar o comparar con mayor claridad los resultados de las API's 
