@@ -18,7 +18,8 @@ class AddForeignKeysToOrdersTable extends Migration {
 			$table->foreign('creator_id', 'fk_orders_users1')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 			$table->foreign('client_id', 'fk_orders_users2')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 			$table->foreign('transporter_id', 'fk_orders_users3')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('users_addresses_id', 'fk_orders_users_addresses1')->references('id')->on('users_addresses')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('storage_id', 'fk_orders_storages1')->references('id')->on('storages')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('users_addresses_id', 'fk_orders_users_addresses1')->references('id')->on('users_addresses')->onUpdate('NO ACTION')->onDelete('NO ACTION');			
 		});
 	}
 

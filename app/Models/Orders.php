@@ -37,10 +37,12 @@ class Orders extends Model
         'creator_id',
         'client_id',
         'transporter_id',
+        'storage_id',
         'users_addresses_id',
         'delivery_date',
         'priority',
-        'status_id'
+        'status_id',
+        'paid'
     ];
 
     /**
@@ -52,9 +54,11 @@ class Orders extends Model
         'creator_id' => 'integer',
         'client_id' => 'integer',
         'transporter_id' => 'integer',
+        'storage_id' => 'integer',
         'users_addresses_id' => 'integer',
         'priority' => 'integer',
-        'status_id' => 'integer'
+        'status_id' => 'integer',
+        'paid' => 'integer'
     ];
 
     /**
@@ -65,7 +69,11 @@ class Orders extends Model
     public static $rules = [
         
         'creator_id' => 'required',
-        'client_id' => 'required'
+        'client_id' => 'required',
+        'storage_id' => 'required',
+        'users_addresses_id' => 'required',
+        'priority' => 'required',
+        'status_id' => 'required'
     ];
 
     /**
@@ -98,6 +106,14 @@ class Orders extends Model
     public function transporter()
     {
         return $this->belongsTo(\App\Models\User::class, 'transporter_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function storage()
+    {
+        return $this->belongsTo(\App\Models\Storage::class, 'storage_id');
     }
 
     /**

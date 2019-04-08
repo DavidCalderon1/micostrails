@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration {
 			$table->integer('creator_id')->index('fk_orders_users1_idx');
 			$table->integer('client_id')->index('fk_orders_users2_idx');
 			$table->integer('transporter_id')->nullable()->index('fk_orders_users3_idx');
+			$table->integer('storage_id')->index('fk_orders_storages1_idx');
 			$table->integer('users_addresses_id')->nullable()->index('fk_orders_users_addresses1_idx');
 			$table->dateTime('delivery_date')->nullable();
 			$table->boolean('priority')->nullable();

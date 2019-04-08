@@ -357,6 +357,7 @@ CREATE TABLE IF NOT EXISTS `online_store`.`orders` (
   `creator_id` INT(10) NOT NULL,
   `client_id` INT(10) NOT NULL,
   `transporter_id` INT(10) NULL,
+  `storage_id` INT(10) NOT NULL,
   `users_addresses_id` INT(10) NOT NULL,
   `delivery_date` TIMESTAMP NULL,
   `priority` TINYINT(1) NULL,
@@ -369,6 +370,7 @@ CREATE TABLE IF NOT EXISTS `online_store`.`orders` (
   INDEX `fk_orders_users1_idx` (`creator_id` ASC),
   INDEX `fk_orders_users2_idx` (`client_id` ASC),
   INDEX `fk_orders_users3_idx` (`transporter_id` ASC),
+  INDEX `fk_orders_storages1_idx` (`storage_id` ASC),
   INDEX `fk_orders_users_addresses1_idx` (`users_addresses_id` ASC),
   INDEX `fk_orders_status1_idx` (`status_id` ASC),
   CONSTRAINT `fk_orders_users1`
@@ -384,6 +386,11 @@ CREATE TABLE IF NOT EXISTS `online_store`.`orders` (
   CONSTRAINT `fk_orders_users3`
     FOREIGN KEY (`transporter_id`)
     REFERENCES `online_store`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orders_storages1`
+    FOREIGN KEY (`storage_id`)
+    REFERENCES `online_store`.`storages` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_users_addresses1`

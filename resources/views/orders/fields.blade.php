@@ -16,6 +16,12 @@
     {!! Form::number('transporter_id', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- storage Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('storage_id', 'Storage Id:') !!}
+    {!! Form::number('storage_id', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Users Addresses Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('users_addresses_id', 'Users Addresses Id:') !!}
@@ -40,16 +46,22 @@
 <!-- Priority Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('priority', 'Priority:') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('priority', 0) !!}
-        {!! Form::checkbox('priority', '1', null) !!} 1
-    </label>
+    {!! Form::number('priority', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Status Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status_id', 'Status Id:') !!}
     {!! Form::number('status_id', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Paid Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('paid', 'Paid:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('priority', 0) !!}
+        {!! Form::checkbox('priority', '1', null) !!} 1
+    </label>
 </div>
 
 <!-- Submit Field -->
