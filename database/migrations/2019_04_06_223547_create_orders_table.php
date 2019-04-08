@@ -21,9 +21,9 @@ class CreateOrdersTable extends Migration {
 			$table->integer('storage_id')->index('fk_orders_storages1_idx');
 			$table->integer('users_addresses_id')->nullable()->index('fk_orders_users_addresses1_idx');
 			$table->dateTime('delivery_date')->nullable();
-			$table->boolean('priority')->nullable();
+			$table->integer('priority',1)->nullable();
 			$table->integer('status_id')->nullable()->index('fk_orders_status1_idx');
-			$table->boolean('paid')->default(0);
+			$table->integer('paid',1)->default(0);
 			$table->timestamps();
 			$table->softDeletes();
 		});
