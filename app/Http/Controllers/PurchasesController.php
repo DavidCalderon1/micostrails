@@ -37,7 +37,7 @@ class PurchasesController extends AppBaseController
         $providers_id = array_column($purchases, 'providers_id');
         $storages_id = array_column($purchases, 'storage_id');
 
-        $providers =  \App\Models\providers::whereIn('id',$providers_id)
+        $providers =  \App\Models\Providers::whereIn('id',$providers_id)
             ->pluck('name','id');
 
         $storages =  \App\Models\Storages::whereIn('id',$storages_id)
@@ -54,7 +54,7 @@ class PurchasesController extends AppBaseController
      */
     public function create()
     {
-        $providers =  \App\Models\providers::pluck('name','id');
+        $providers =  \App\Models\Providers::pluck('name','id');
 
         $storages =  \App\Models\Storages::pluck('name','id');
 
@@ -152,7 +152,7 @@ class PurchasesController extends AppBaseController
             return redirect(route('purchases.index'));
         }
 
-        $providers =  \App\Models\providers::pluck('name','id');
+        $providers =  \App\Models\Providers::pluck('name','id');
 
         $storages =  \App\Models\Storages::pluck('name','id');
 
