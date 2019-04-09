@@ -12,6 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        
 
         \DB::table('users')->delete();
         
@@ -22,7 +23,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Administrador',
                 'email' => 'admin@mail.com',
                 'password' => '$2y$10$LgS.jvdYwYe7j4ll6hQN8.oncwxP8c2TGx3l4CS9Ql2AJejYnAv8y',
-                'remember_token' => NULL,
+                'remember_token' => 'xYtJJSVKIQhfQQaSZXku9jBamd0AJCciP7crMX0zYlZBztAKnYalobC7c9E4',
                 'created_at' => '2019-04-07 05:37:57',
                 'updated_at' => '2019-04-07 05:37:57',
                 'deleted_at' => NULL,
@@ -181,10 +182,73 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2019-04-07 05:37:57',
                 'deleted_at' => NULL,
             ),
+            15 => 
+            array (
+                'id' => 16,
+                'name' => 'Jeanette Goodwin',
+                'email' => 'bcollier@example.net',
+                'password' => '$2y$10$LgS.jvdYwYe7j4ll6hQN8.oncwxP8c2TGx3l4CS9Ql2AJejYnAv8y',
+                'remember_token' => 'bbuQKSYT0S',
+                'created_at' => '2019-04-08 08:16:15',
+                'updated_at' => '2019-04-08 08:16:15',
+                'deleted_at' => NULL,
+            ),
+            16 => 
+            array (
+                'id' => 17,
+                'name' => 'Alfonso Considine',
+                'email' => 'lacy.emard@example.com',
+                'password' => '$2y$10$LgS.jvdYwYe7j4ll6hQN8.oncwxP8c2TGx3l4CS9Ql2AJejYnAv8y',
+                'remember_token' => 'hmQZ1o57hO',
+                'created_at' => '2019-04-08 08:16:15',
+                'updated_at' => '2019-04-08 08:16:15',
+                'deleted_at' => NULL,
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'name' => 'Dorothea Welch',
+                'email' => 'lemuel.goodwin@example.net',
+                'password' => '$2y$10$LgS.jvdYwYe7j4ll6hQN8.oncwxP8c2TGx3l4CS9Ql2AJejYnAv8y',
+                'remember_token' => '5liM8FQOJy',
+                'created_at' => '2019-04-08 08:16:15',
+                'updated_at' => '2019-04-08 08:16:15',
+                'deleted_at' => NULL,
+            ),
+            18 => 
+            array (
+                'id' => 19,
+                'name' => 'Judy Conroy',
+                'email' => 'hillard99@example.com',
+                'password' => '$2y$10$LgS.jvdYwYe7j4ll6hQN8.oncwxP8c2TGx3l4CS9Ql2AJejYnAv8y',
+                'remember_token' => 'ftfW2iMzxo',
+                'created_at' => '2019-04-08 08:16:15',
+                'updated_at' => '2019-04-08 08:16:15',
+                'deleted_at' => NULL,
+            ),
+            19 => 
+            array (
+                'id' => 20,
+                'name' => 'Dr. Concepcion Swift III',
+                'email' => 'zoey.schuster@example.com',
+                'password' => '$2y$10$LgS.jvdYwYe7j4ll6hQN8.oncwxP8c2TGx3l4CS9Ql2AJejYnAv8y',
+                'remember_token' => 'sK8LyEU6CR',
+                'created_at' => '2019-04-08 08:16:15',
+                'updated_at' => '2019-04-08 08:16:15',
+                'deleted_at' => NULL,
+            ),
+            20 => 
+            array (
+                'id' => 21,
+                'name' => 'Jaylan Tremblay',
+                'email' => 'blanca28@example.org',
+                'password' => '$2y$10$LgS.jvdYwYe7j4ll6hQN8.oncwxP8c2TGx3l4CS9Ql2AJejYnAv8y',
+                'remember_token' => 'KdD2z2ls5j',
+                'created_at' => '2019-04-08 08:16:15',
+                'updated_at' => '2019-04-08 08:16:15',
+                'deleted_at' => NULL,
+            ),
         ));
-
-        // transporters
-        $users = factory(App\Models\User::class, 6)->create();
         
         
     }
