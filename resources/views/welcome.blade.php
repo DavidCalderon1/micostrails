@@ -5,7 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <!-- Styles -->
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
+        <title>MicosTrails Dirt Jump</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -62,6 +66,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .logo img {
+                height: 18rem;
+            }
         </style>
     </head>
     <body>
@@ -78,16 +86,20 @@
             @endif
 
             <div class="content">
+                <div class="logo m-b-md">
+                    <img src="{{ url('images/logo.jpg') }}">
+                </div>
                 <div class="title m-b-md">
-                    Laravel
+                    MicosTrails Dirt Jump
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="javascript:void(0)">Aportes Foampit</a>
+                    <a href="javascript:void(0)">Calendario Skateparks</a>
+                        {{-- 17/04/2019 margaritas skateborading -> no bmx --}}
+                    <a href="javascript:void(0)">Galeria</a>
+                    <a href="javascript:void(0)">Quienes somos</a>
+                    <a href="javascript:void(0)">Contactenos</a>
                 </div>
             </div>
         </div>
