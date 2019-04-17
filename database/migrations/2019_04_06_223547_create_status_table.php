@@ -16,7 +16,7 @@ class CreateStatusTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->string('name', 191);
-			$table->boolean('position')->nullable();
+			$table->integer('position')->nullable();
 			$table->string('color', 10)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
